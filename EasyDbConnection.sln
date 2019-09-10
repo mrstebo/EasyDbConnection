@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CB41505F-66AC-4C9B-84C2-88C69D3C770E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{349468C4-F5BD-4777-BBF9-9CB96133C9C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDbConnection", "src\EasyDbConnection\EasyDbConnection.csproj", "{2C3BB94A-5836-4EBC-BA41-2806600C0762}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyDbConnection.Tests", "tests\EasyDbConnection.Tests\EasyDbConnection.Tests.csproj", "{17EE8816-48A5-4F5D-8707-09728737D8C4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2C3BB94A-5836-4EBC-BA41-2806600C0762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C3BB94A-5836-4EBC-BA41-2806600C0762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C3BB94A-5836-4EBC-BA41-2806600C0762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C3BB94A-5836-4EBC-BA41-2806600C0762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17EE8816-48A5-4F5D-8707-09728737D8C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17EE8816-48A5-4F5D-8707-09728737D8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17EE8816-48A5-4F5D-8707-09728737D8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17EE8816-48A5-4F5D-8707-09728737D8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C3BB94A-5836-4EBC-BA41-2806600C0762} = {CB41505F-66AC-4C9B-84C2-88C69D3C770E}
+		{17EE8816-48A5-4F5D-8707-09728737D8C4} = {349468C4-F5BD-4777-BBF9-9CB96133C9C7}
+	EndGlobalSection
+EndGlobal
