@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>EasyDbConnection</id>
+    <version>$version$</version>
+    <title>EasyDbConnection</title>
+    <authors>mrstebo</authors>
+    <owners>mrstebo</owners>
+    <projectUrl>https://github.com/mrstebo/EasyDbConnection</projectUrl>
+    <licenseUrl>https://github.com/mrstebo/EasyDbConnection/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Easily execute commands without the faff</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>dbconnection idbconnection database connections</tags>
+  </metadata>
+  <files>
+      <file src="src\EasyDbConnection\bin\$target$\netstandard2.0\*.dll" target="lib/netstandard2.0" />
+  </files>
+</package>
