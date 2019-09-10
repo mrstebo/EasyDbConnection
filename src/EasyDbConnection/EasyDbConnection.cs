@@ -3,6 +3,7 @@ using System.Data;
 using System.Diagnostics;
 using EasyDbConnection.Commands;
 using EasyDbConnection.Events;
+using EasyDbConnection.Tasks;
 
 namespace EasyDbConnection
 {
@@ -76,19 +77,9 @@ namespace EasyDbConnection
                 _connection.Open();
         }
         
-        private static TimedResult<T> Execute<T>(Func<T> func)
+        private static TimedTask<T> Execute<T>(Func<T> func)
         {
-            var stopwatch = new Stopwatch();
-
-            stopwatch.Start();
-
-            return new TimedResult<T> {Value = func(), TimeTaken = stopwatch.Elapsed};
-        }
-
-        private struct TimedResult<T>
-        {
-            public T Value;
-            public TimeSpan TimeTaken;
+            return TimedTaskRunner.Execute(func);
         }
     }
 }
