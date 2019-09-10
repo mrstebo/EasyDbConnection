@@ -19,7 +19,7 @@ namespace EasyDbConnection.Tests.Commands
 
         private IDbConnection _connection;
         private ExecuteReaderCommand _command;
-        
+
         [Test]
         public void Execute_runs_a_DbCommand()
         {

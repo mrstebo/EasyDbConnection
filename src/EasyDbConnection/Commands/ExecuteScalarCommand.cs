@@ -12,7 +12,7 @@ namespace EasyDbConnection.Commands
         {
             _connection = connection;
         }
-        
+
         public object Execute(string commandText, IEnumerable<DbParam> parameters)
         {
             using (var command = _connection.CreateCommand())
@@ -22,7 +22,7 @@ namespace EasyDbConnection.Commands
                 foreach (var parameter in parameters)
                 {
                     var p = command.CreateFromDbParam(parameter);
-                    
+
                     command.Parameters.Add(p);
                 }
 

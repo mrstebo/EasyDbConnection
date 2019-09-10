@@ -21,8 +21,8 @@ namespace EasyDbConnection.Commands
 
                 foreach (var parameter in parameters)
                 {
-                    var p = command.CreateFromDbParam(parameter); 
-                    
+                    var p = command.CreateFromDbParam(parameter);
+
                     command.Parameters.Add(p);
                 }
 

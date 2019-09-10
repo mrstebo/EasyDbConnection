@@ -16,13 +16,13 @@ namespace EasyDbConnection.Commands
         public IDataReader Execute(string commandText, IEnumerable<DbParam> parameters)
         {
             var command = _connection.CreateCommand();
-         
+
             command.CommandText = commandText;
 
             foreach (var parameter in parameters)
             {
                 var p = command.CreateFromDbParam(parameter);
-                
+
                 command.Parameters.Add(p);
             }
 

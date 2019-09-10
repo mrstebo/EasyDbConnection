@@ -42,7 +42,6 @@ namespace EasyDbConnection.Tests
         [TestCase(ConnectionState.Broken)]
         [TestCase(ConnectionState.Fetching)]
         [TestCase(ConnectionState.Connecting)]
-
         public void Open_does_nothing_when_the_connection_is_already_open(ConnectionState state)
         {
             A.CallTo(() => _connection.State).Returns(state);
