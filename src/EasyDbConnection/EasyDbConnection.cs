@@ -18,6 +18,18 @@ namespace EasyDbConnection
             _connection = connection;
         }
 
+        public void Open()
+        {
+            if (_connection.State == ConnectionState.Closed) 
+                _connection.Open();
+        }
+
+        public void Close()
+        {
+            if (_connection.State != ConnectionState.Closed)
+                _connection.Close();
+        }
+
         public int ExecuteNonQuery(string commandText, params DbParam[] parameters)
         {
             OnExecuting(new DbCommandExecutingEventArgs(commandText, parameters));
@@ -56,7 +68,7 @@ namespace EasyDbConnection
         
         public event EventHandler<DbCommandExecutingEventArgs> Executing;
         public event EventHandler<DbCommandExecutedEventArgs> Executed;
-        
+
         protected virtual void OnExecuting(DbCommandExecutingEventArgs e)
         {
             Executing?.Invoke(this, e);

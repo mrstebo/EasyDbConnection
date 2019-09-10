@@ -25,6 +25,62 @@ namespace EasyDbConnection.Tests
         private IEasyDbConnection _easyDbConnection;
 
         [Test]
+        [TestCase(ConnectionState.Closed)]
+        public void Open_opens_the_connection_when_it_is_not_open(ConnectionState state)
+        {
+            A.CallTo(() => _connection.State).Returns(state);
+            
+            _easyDbConnection.Open();
+
+            A.CallTo(() => _connection.Open())
+                .MustHaveHappenedOnceExactly();
+        }
+
+        [Test]
+        [TestCase(ConnectionState.Executing)]
+        [TestCase(ConnectionState.Open)]
+        [TestCase(ConnectionState.Broken)]
+        [TestCase(ConnectionState.Fetching)]
+        [TestCase(ConnectionState.Connecting)]
+
+        public void Open_does_nothing_when_the_connection_is_already_open(ConnectionState state)
+        {
+            A.CallTo(() => _connection.State).Returns(state);
+            
+            _easyDbConnection.Open();
+
+            A.CallTo(() => _connection.Open())
+                .MustNotHaveHappened();
+        }
+        
+        [Test]
+        [TestCase(ConnectionState.Open)]
+        [TestCase(ConnectionState.Broken)]
+        [TestCase(ConnectionState.Fetching)]
+        [TestCase(ConnectionState.Executing)]
+        [TestCase(ConnectionState.Connecting)]
+        public void Close_closes_the_connection_when_it_is_not_closed(ConnectionState state)
+        {
+            A.CallTo(() => _connection.State).Returns(state);
+            
+            _easyDbConnection.Close();
+            
+            A.CallTo(() => _connection.Close())
+                .MustHaveHappenedOnceExactly();
+        }
+
+        [Test]
+        public void Close_does_nothing_when_the_connection_is_already_closed()
+        {
+            A.CallTo(() => _connection.State).Returns(ConnectionState.Closed);
+            
+            _easyDbConnection.Close();
+            
+            A.CallTo(() => _connection.Close())
+                .MustNotHaveHappened();
+        }
+
+        [Test]
         public void ExecuteNonQuery_runs_ExecuteNonQuery_on_the_IDbCommand()
         {
             A.CallTo(() => _command.ExecuteNonQuery())

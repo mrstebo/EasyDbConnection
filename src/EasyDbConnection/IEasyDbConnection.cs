@@ -6,10 +6,12 @@ namespace EasyDbConnection
 {
     public interface IEasyDbConnection
     {
+        void Open();
+        void Close();
         int ExecuteNonQuery(string commandText, params DbParam[] parameters);
         object ExecuteScalar(string commandText, params DbParam[] parameters);
         IDataReader ExecuteReader(string commandText, params DbParam[] parameters);
-        
+
         event EventHandler<DbCommandExecutingEventArgs> Executing;
         event EventHandler<DbCommandExecutedEventArgs> Executed;
     }
