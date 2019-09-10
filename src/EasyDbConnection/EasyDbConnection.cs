@@ -6,7 +6,7 @@ using EasyDbConnection.Events;
 
 namespace EasyDbConnection
 {
-    public class EasyDbConnection : IEasyDbConnection
+    internal class EasyDbConnection : IEasyDbConnection
     {
         private readonly IDbConnection _connection;
 
@@ -15,20 +15,10 @@ namespace EasyDbConnection
             _connection = connection;
         }
 
-        public void Open()
-        {
-            if (_connection.State == ConnectionState.Closed)
-                _connection.Open();
-        }
-
-        public void Close()
-        {
-            if (_connection.State != ConnectionState.Closed)
-                _connection.Close();
-        }
-
         public int ExecuteNonQuery(string commandText, params DbParam[] parameters)
         {
+            OpenConnection();
+            
             OnExecuting(new DbCommandExecutingEventArgs(commandText, parameters));
 
             var command = new ExecuteNonQueryCommand(_connection);
@@ -41,6 +31,8 @@ namespace EasyDbConnection
 
         public object ExecuteScalar(string commandText, params DbParam[] parameters)
         {
+            OpenConnection();
+            
             OnExecuting(new DbCommandExecutingEventArgs(commandText, parameters));
 
             var command = new ExecuteScalarCommand(_connection);
@@ -53,6 +45,8 @@ namespace EasyDbConnection
 
         public IDataReader ExecuteReader(string commandText, params DbParam[] parameters)
         {
+            OpenConnection();
+            
             OnExecuting(new DbCommandExecutingEventArgs(commandText, parameters));
 
             var command = new ExecuteReaderCommand(_connection);
@@ -66,16 +60,22 @@ namespace EasyDbConnection
         public event EventHandler<DbCommandExecutingEventArgs> Executing;
         public event EventHandler<DbCommandExecutedEventArgs> Executed;
 
-        protected virtual void OnExecuting(DbCommandExecutingEventArgs e)
+        private void OnExecuting(DbCommandExecutingEventArgs e)
         {
             Executing?.Invoke(this, e);
         }
 
-        protected virtual void OnExecuted(DbCommandExecutedEventArgs e)
+        private void OnExecuted(DbCommandExecutedEventArgs e)
         {
             Executed?.Invoke(this, e);
         }
 
+        private void OpenConnection()
+        {
+            if (_connection.State == ConnectionState.Closed)
+                _connection.Open();
+        }
+        
         private static TimedResult<T> Execute<T>(Func<T> func)
         {
             var stopwatch = new Stopwatch();

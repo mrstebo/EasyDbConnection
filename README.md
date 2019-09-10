@@ -11,14 +11,9 @@ Easily execute commands without the faff
 ```cs
 using(var dbConnection = new SqlConnection("CONNECTION_STRING"))
 {
-    var easyDbConnection = new EasyDbConnection(dbConnection);
-
-    easyDbConnection.Open();
+    var easyDbConnection = EasyDbConnectionFactory.Create(dbConnection);
 
     // Do database stuff
-
-    // Explicitly call close (not needed when `IDbConnection` is wrapped in a using scope)
-    easyDbConnection.Close();
 }
 ```
 
