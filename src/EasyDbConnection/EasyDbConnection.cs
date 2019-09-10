@@ -1,11 +1,8 @@
 using System;
 using System.Data;
 using System.Diagnostics;
-using System.Runtime.CompilerServices;
 using EasyDbConnection.Commands;
 using EasyDbConnection.Events;
-
-[assembly: InternalsVisibleTo("EasyDbConnection.Tests")]
 
 namespace EasyDbConnection
 {
@@ -20,7 +17,7 @@ namespace EasyDbConnection
 
         public void Open()
         {
-            if (_connection.State == ConnectionState.Closed) 
+            if (_connection.State == ConnectionState.Closed)
                 _connection.Open();
         }
 
@@ -65,7 +62,7 @@ namespace EasyDbConnection
 
             return result.Value;
         }
-        
+
         public event EventHandler<DbCommandExecutingEventArgs> Executing;
         public event EventHandler<DbCommandExecutedEventArgs> Executed;
 
